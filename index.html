@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Flare - An Accelerator for Apache Spark</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="css/grayscale.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-fire"></i> Flare <span class="light">Up</span>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <!-- <li>
+                        <a class="page-scroll" href="#download">Download</a>
+                    </li> -->
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Flare <i class="fa fa-fire"></i></h1>
+                        <p class="intro-text">
+                            Scale up Apache Spark with Native Compilation<br>
+                            and set your Data on Fire!
+                        </p>
+                        <a href="#about" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+
+<h2>Set your Data on Fire</h2>
+
+<p>Flare is a drop-in accelerator for Apache Spark 2.0 that achieves order of magnitude 
+speedups on DataFrame and SQL workloads.</p>
+
+<h2>Native Compilation</h2>
+
+<p>Spark performance has made impressive progress thanks to 
+<a href="https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html">Catalyst</a> and 
+<a href="https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html">Tungsten</a>, 
+but there is still a significant gap towards best-of-breed query engines or 
+hand-written low-level C code.</p> 
+
+<!-- McSherry -->
+
+<p>Flare closes this gap by compiling Catalyst query plans to native code.</p>
+
+<h2>Mechanical Sympathy</h2>
+
+<p>Flare’s low-level implementation takes full advantage of native execution, 
+using techniques such as NUMA-aware data layout and scheduling to leverage 
+<a href="https://dzone.com/articles/mechanical-sympathy">mechanical sympathy</a>, 
+and to bring execution closer to the metal than what is possible with current JVM-based 
+techniques.</p> 
+
+<h2>Big Memory and Many Cores</h2>
+
+<p>
+Modern server-class hardware provides memory in the range of TB, and dozens 
+of CPU cores. Such powerful machines are readily available, for example as
+<a href="https://aws.amazon.com/blogs/aws/x1-instances-for-ec2-ready-for-your-memory-intensive-workloads/">X1 instances</a>
+on Amazon EC2 or for purchase at Dell.</p>
+
+<p> They are as powerful as a small cluster, but do not require network 
+communication or fault tolerance, and they consume less energy, which
+makes them cheaper to operate.</p>
+
+<p>While Spark was primarily designed for scaling out on clusters,
+Flare makes scaling up on server-class hardware an attractive alternative, 
+in terms of performance, and also in terms of operating costs.</p>
+
+<!--This talk will discuss the design of Flare and will demonstrate experiments on standard SQL benchmarks that exhibit order of magnitude speedups over Spark 2.0.-->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <!-- <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>About Grayscale</h2>
+                <p>Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
+                <p>This theme features stock photos by <a href="http://gratisography.com/">Gratisography</a> along with a custom Google Maps skin courtesy of <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>
+                <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.</p>
+            </div>
+        </div>
+    </section>-->
+
+    <!-- Download Section -->
+    <!-- <section id="download" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Download Grayscale</h2>
+                    <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
+                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+    <!-- Contact Section -->
+    <!--
+    <section id="contact" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Contact Start Bootstrap</h2>
+                <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
+                <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
+                </p>
+                <ul class="list-inline banner-social-buttons">
+                    <li>
+                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>-->
+
+
+<!-- https://docs.google.com/forms/d/e/1FAIpQLSfPC1YHjC7r0PjvxXn0jZ6IR0PvjfEOTmURukd2HLgopQOj6A/viewform?entry.1556369182&entry.2092238618&entry.479301265&entry.1753222212&entry.1724678596=Please+send+me+updates+about+Flare+by+email -->
+
+    <section id="contact" class="container grey-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+            <h2>Availability</h2>
+            <p>Flare is under active development, and we will share more information very soon.</p>
+            <p>We are planning to start a private beta program in Fall 2016.</p>
+        </div>
+    </section>
+
+    <section id="contact-form" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+            <h2>Stay Tuned</h2>
+            <p>Meanwhile, please follow us on Twitter:</p>
+            <ul class="list-inline banner-social-buttons">
+                <li>
+                    <a href="https://twitter.com/flare-up" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                </li>
+            </ul>
+            <p></p>
+            <p>And sign up for news via email:</p>
+            <form role="form" class="form-inline" method="get" target="_blank" action="https://docs.google.com/forms/d/e/1FAIpQLSfPC1YHjC7r0PjvxXn0jZ6IR0PvjfEOTmURukd2HLgopQOj6A/viewform?">
+                        <input type="hidden" name="entry.1724678596" value="Please send me updates about Flare by email"/>
+                <div class="form-group">
+                    <input type="email" name="entry.1556369182" placeholder="Enter Email Address" class="form-control input input-default input-lg " id="email">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default btn-lg"/>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section id="spark-summit" class="container grey-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+            <h2>Don't Miss our Upcoming Talk</h2>
+
+            <p>Spark Summit EU, October 26, 4:05 PM – 4:35 PM</p>
+
+<blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">We are excited to announce the agenda for Spark Summit EU 2016 in Brussels. <a href="https://t.co/Bekc91wPEP">https://t.co/Bekc91wPEP</a></p>&mdash; Spark Summit (@spark_summit) <a href="https://twitter.com/spark_summit/status/761182636257796097">August 4, 2016</a></blockquote>
+<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </div>
+    </section>
+
+    <!--                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfPC1YHjC7r0PjvxXn0jZ6IR0PvjfEOTmURukd2HLgopQOj6A/viewform?embedded=true&entry.1556369182=foobar&entry.1724678596=Please+send+me+updates+about+Flare+by+email" width="100%" height="1000" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe> -->
+
+    <!-- Map Section -->
+    <!-- <div id="map"></div> -->
+
+    <!-- Footer -->
+    <footer>
+        <!-- <div class="container text-center">
+            <p>Copyright &copy; Your Website 2016</p>
+        </div> -->
+        <div class="container text-center">
+            <p><small>Copyright &copy; 2016 Tiark Rompf, Purdue University. Theme by <a href="">Start Bootstrap</a></small></p>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/grayscale.min.js"></script>
+
+</body>
+
+</html>
