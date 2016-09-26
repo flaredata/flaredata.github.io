@@ -1,0 +1,18 @@
+markdown: kramdown
+
+title: "Flare"
+description: "An accelerator for Apache Spark"
+keywords:
+- Spark
+- DataFrame
+- SQL
+- Query
+- Compiler
+- Performance
+- NUMA
+
+highlighter: rouge
+baseurl:
+xxxpermalink: /:categories/:title.html
+xxxexclude: ["vendor"]
+exclude: ["img-ppt"]
