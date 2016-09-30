@@ -200,7 +200,7 @@ So compared to Spark 2.0, the C program runs **20x** faster!
 
 ## Flare: Set your Data on Fire!
 
-Is there any good reason *why* the C code needs to be faster than Spark? We believe not, and in fact, running the same Query 6 accelerated with Flare
+Is there any good reason *why* the C code needs to be faster than Spark? We believe not, and in fact, running the same query, Q6, accelerated with Flare
 
     scala> val q1 = flare(q)
     scala> time(q1.show)
@@ -216,7 +216,7 @@ Is there any good reason *why* the C code needs to be faster than Spark? We beli
 yields **exactly the same performance** as the hand-written C code!
 
 
-Excited? Stay tuned for the next post!
+Sounds exciting? Stay tuned for the next post!
 
 
 
