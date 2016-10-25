@@ -11,7 +11,7 @@ In this post, without further ado, we present results for the full TPC-H suite o
 Why single-core? Quoting Paul Barham via [Frank McSherry](http://www.frankmcsherry.org/graph/scalability/cost/2015/01/15/COST.html): "You can have a second computer once you’ve
 shown you know how to use the first one". Premature scale-out has immediate drawbacks in terms of higher datacenter and operating costs, and inefficient use of energy may have consequences as far-reaching as contributing to global warning.
 
-All numbers below in milliseconds (ms), measured on a single core, after pre-loading the data into memory. We show results first for the SF1 dataset (1 GB), then for SF10 (10 GB).
+All numbers below are in milliseconds (ms), measured on a single core, after pre-loading the data into memory. We show results first for the SF1 dataset (1 GB), then for SF10 (10 GB).
 
 <style type="text/css">
 table {
@@ -54,7 +54,7 @@ td {
 
 <p></p>
 
-| SF1        |     Q1  |     Q2  |    Q3  |    Q4  |     Q5  |    Q6  |     Q7  |    Q8  |     Q9  |    Q10  |   Q11  |   Q12  |   Q13  |   Q14  |   Q15  |    Q16  |    Q17  |   Q18  |   Q19  |   Q20  |    Q21  |   Q22  |
+| SF10       |     Q1  |     Q2  |    Q3  |    Q4  |     Q5  |    Q6  |     Q7  |    Q8  |     Q9  |    Q10  |   Q11  |   Q12  |   Q13  |   Q14  |   Q15  |    Q16  |    Q17  |   Q18  |   Q19  |   Q20  |    Q21  |   Q22  |
 |:-----------|---------|---------|--------|--------|---------|--------|---------|--------|---------|---------|--------|--------|--------|--------|--------|---------|---------|--------|--------|--------|---------|--------|
 | PostgreSQL |  241404 |    6649 |  33721 |   7936 |   30043 |  23358 |   32501 |  29759 |   64224 |   33145 |   7093 |  37880 |  31242 |  22058 |  23133 |   13232 |  155449 |  90949 |  29452 |  65541 |  299178 |  11703 |
 | Spark SQL  |   22487 |   29387 |  66502 |  30168 | 2554893 |   8463 |   51715 |  91718 |  175146 |   60688 |  26560 |  25701 |  39432 |  10942 |  21552 |   31349 |  109502 |  81018 |  16384 |  38774 |   95982 |  85351 |
@@ -69,7 +69,7 @@ but also to widely used relational database systems like PostgreSQL.
 What does this mean for scalability? By using each individual core much more
 efficiently, Flare can process data at much lower cost. For some queries, 
 we would have to run Spark on hundreds of cores, quite likely spread 
-across a cluster of tens of machines, **and with perfect scalability**
+across a cluster of tens of machines -- **and with perfect scalability** --
 to achieve the same performance as Flare on a single core.
 
 
