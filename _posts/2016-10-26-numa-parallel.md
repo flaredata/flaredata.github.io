@@ -45,8 +45,7 @@ td {
 
 <p></p>
 
-So, here we have a single machine processing roughly 80 GB of data in about 250 ms,
-which amounts to 320 GB per second.
+So, here we have a single machine processing roughly 80 GB of data in about 250 ms.
 
 What is especially important is that we keep scaling across multiple
 CPU sockets and memory regions: the results for 32 and 64 cores involve
