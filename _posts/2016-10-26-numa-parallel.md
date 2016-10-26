@@ -4,7 +4,7 @@ title:  "NUMA-Aware Parallelization"
 date: 2016-10-26
 ---
 
-In our [previous]({% post_url 2016-09-30-q6-spark-vs-c-on-a-laptop %}) [posts]({% post_url 2016-10-20-tpch-sequential %}), we looked at Spark performance with and without Flare for the TPC-H suite of 22 queries. We were mainly interested in single core performance, to gauge the inherent overheads in Spark, and we showed that Flare can reduce those by one or even two orders of magnitude.
+In our [previous]({% post_url 2016-09-30-q6-spark-vs-c-on-a-laptop %}) [posts]({% post_url 2016-10-19-tpch-sequential %}), we looked at Spark performance with and without Flare for the TPC-H suite of 22 queries. We were mainly interested in single core performance, to gauge the inherent overheads in Spark, and we showed that Flare can reduce those by one or even two orders of magnitude.
 
 But of course, once we obtain good performance on a single core, we want to scale. 
 
