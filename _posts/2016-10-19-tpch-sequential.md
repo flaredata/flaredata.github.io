@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "TPC-H On a Single Core"
-date: 2016-10-20
+date: 2016-10-19
 ---
 
 In our [last post]({% post_url 2016-09-30-q6-spark-vs-c-on-a-laptop %}) we looked at the performance of Spark vs hand-written C code for a single query, Q6, from the standard TPC-H benchmark. We saw that Flare is able to accelerate the Spark query by a factor of 20x, to exactly the same performance as the hand-written C program.
