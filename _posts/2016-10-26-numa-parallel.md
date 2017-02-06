@@ -52,7 +52,7 @@ What is especially important is that we keep scaling across multiple
 CPU sockets and memory regions: the results for 32 and 64 cores involve
 2 and 4 sockets respectively.
 
-Note we are comparing to a highly optimized sequential implementation, which
+Note that we are comparing to a highly optimized sequential implementation, which
 has no provisions for parallelism, and can therefore use more efficient
 internal data structures in a few cases. Thus, we could not expect
 to see completely linear speedups.
