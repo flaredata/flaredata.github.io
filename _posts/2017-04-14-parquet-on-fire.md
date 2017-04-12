@@ -29,10 +29,9 @@ Now, the big question...is it fast?
 ## Parquet Performance
 We'll consider two cases:
 
-<ol>
-	<li>Reading an entire file of data (worst-case scenario for Parquet)</li>
-	<li>Reading a subset of columns</li>
-</ol>
+1. Reading an entire file of data (worst-case scenario for Parquet)
+2. Reading a subset of columns
+
 
 All experiments were run on a single NUMA machine with 4 sockets, 12 Xeon E5-4657L cores per socket, and 256GB RAM per socket (1 TB total). We used Ubuntu 14.04.1 LTS, and Spark 2.0, with Scala 2.11. We will focus on the standard TPC-H benchmark, with all results in milliseconds.
 
@@ -41,9 +40,28 @@ It is expected that using Parquet will result in no significant gains over a tra
 
 Let's look at loading every table in TPC-H on scale factor 10.
 
+<style type="text/css">
+    table {
+        background: white;
+        color: black;
+        padding: 15px;
+    }
+    th {
+        border-bottom: 1px solid black;
+        padding-right: 5px;
+        text-align: right;
+    }
+    td {
+        padding-right: 5px;
+        text-align: right;
+    }
+</style>
+
 <p></p>
-|Table		| # Tuples	| Spark (CSV)	| Spark(Parquet)	|
-|:---------|-------|-------|-------|
+
+<p></p>
+|   Table   | # Tuples   | Spark (CSV)   | Spark(Parquet)   |
+|:---------|:-------:|:-------:|:-------:|
 | CUSTOMER | 1500000  | 11664  | 9730  |
 | LINEITEM | 59986052 | 471207  | 257898  |
 | NATION | 25 | 106  | 110  |
@@ -105,7 +123,7 @@ While this is still an impressive **22x** speedup over Spark's default CSV reade
 ## Flare Parquet
 By applying the same techniques to Flare's Parquet reader as we did with Flare's CSV reader, do we get the same speedups? Let's look at our results from query 6:
 
-scala> val q1 = flare(q)
+    scala> val q1 = flare(q)
     scala> time(q1.show)
     +--------------------+    
     |             revenue|
