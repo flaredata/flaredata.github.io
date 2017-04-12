@@ -122,3 +122,5 @@ This translates to a **124x** speedup over Spark's CSV reader, an additional **5
 </div>
 
 For more concrete numbers, check out the recent published Flare paper [here](https://arxiv.org/abs/1703.08219)!
+
+How does Flare Parquet stack up against other column store formats and other database engines? Check back soon to find out!
