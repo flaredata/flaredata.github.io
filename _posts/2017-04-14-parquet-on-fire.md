@@ -60,6 +60,7 @@ Let's look at loading every table in TPC-H on scale factor 10.
 <p></p>
 
 <p></p>
+
 |   Table   | # Tuples   | Spark (CSV)   | Spark(Parquet)   |
 |:---------|:-------:|:-------:|:-------:|
 | CUSTOMER | 1500000  | 11664  | 9730  |
@@ -70,6 +71,7 @@ Let's look at loading every table in TPC-H on scale factor 10.
 | PARTSUPP | 8000000 | 28748  | 17731  |
 | REGION | 5 | 102  | 90  |
 | SUPPLIER | 100000 | 616  | 522  |
+
 <p></p>
 
 As shown here, we see that only one table is loaded faster in CSV: NATION. It appears that this is due to the inherent overhead built into Parquet due to the column chunk/paging structure -- NATION, being only 25 lines long, is too small for Parquet to "catch back up."
