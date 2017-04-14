@@ -26,6 +26,8 @@ Now, the big question...is it fast?
 <img width="60%" src="https://media.tenor.co/images/a8441f0f55fa49d137894f93e0371bdc/tenor.gif">
 </div>
 
+
+
 ## Parquet Performance
 We'll consider two cases:
 
