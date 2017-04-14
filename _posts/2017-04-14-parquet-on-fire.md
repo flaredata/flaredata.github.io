@@ -31,7 +31,7 @@ Now, the big question...is it fast?
 </div>
 
 <style type="text/css">
-    li {
+    ol,li {
         font-size: 20px;
     }
 </style>
