@@ -30,6 +30,12 @@ Now, the big question...is it fast?
 <br />
 </div>
 
+<style type="text/css">
+    li {
+        font-size: 20px;
+    }
+</style>
+
 ## Parquet Performance
 We'll consider two cases:
 1. Reading an entire file of data (worst-case scenario for Parquet)
