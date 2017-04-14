@@ -138,7 +138,7 @@ By applying the same techniques to Flare's Parquet reader as we did with Flare's
 This translates to a **124x** speedup over Spark's CSV reader, an additional **5x** speedup over Spark's Parquet reader! In fact, across all TPC-H queries (for scale factor 1), we see speedups of up to **720x** over Spark's CSV readers, with the minimum being a still sizeable **35x** speedup.
 
 <div>
-<img src="{{ site.baseurl }}/img/tpch-streaming-speedup-sf1.jpg" width="60%" />
+<img src="{{ site.baseurl }}/img/tpch-streaming-speedup-sf1.jpg" width="100%" />
 </div>
 
 For more concrete numbers, check out the recent published Flare paper [here](https://arxiv.org/abs/1703.08219)!
