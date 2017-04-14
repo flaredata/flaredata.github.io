@@ -28,7 +28,6 @@ Now, the big question...is it fast?
 
 <div>
 <br />
-<br />
 </div>
 
 ## Parquet Performance
