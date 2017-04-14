@@ -32,7 +32,6 @@ Now, the big question...is it fast?
 
 ## Parquet Performance
 We'll consider two cases:
-
 1. Reading an entire file of data (worst-case scenario for Parquet)
 2. Reading a subset of columns
 
