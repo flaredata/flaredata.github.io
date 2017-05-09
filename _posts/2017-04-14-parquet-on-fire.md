@@ -16,7 +16,7 @@ Much of Parquet's speedup over CSV in regards to relational workloads come simpl
 
 Parquet files are encoded using a concept of row groups, columns, and pages; a file contains N row groups, each of which has M columns (where each column corresponds to a column in the overall schema). For clarity, we'll call these M columns, "column chunks." Each column chunk has a corresponding page header containing metadata ("page header metadata") regarding the values to follow. These values, then, are stored in pages -- large chunks of pure data.
 
-It's worth noting at this point that Parquet uses the striping and assembly algorithms proposed by Google in [their Dremel paper,](https://research.google.com/pubs/pub36632.html), but we'll skip these details for simplicity.
+It's worth noting at this point that Parquet uses the striping and assembly algorithms proposed by Google in [their Dremel paper](https://research.google.com/pubs/pub36632.html), but we'll skip these details for simplicity.
 
 At the end of each Parquet file is a block of metadata which includes the file's schema, the total number of rows, and the locations within the file where each column chunk can be found. Spark uses this metadata to construct a set of column iterators, providing the aforementioned direct access to individual columns.
 
