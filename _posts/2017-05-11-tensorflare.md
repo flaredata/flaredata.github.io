@@ -14,6 +14,8 @@ In this blog post, we examine the possibility of using a "big data" processing e
 
 TensorFlow is extremely efficient (concrete numbers available [here](https://www.tensorflow.org/performance/benchmarks) and [here](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45166.pdf)), in part due to being written in C++. However, APIs are available in Python, Scala, and Java, with Python being the primary target (as evidenced by the [lack of API stability promises for all other languages](https://www.tensorflow.org/api_docs/)).
 
+As an extension of its current implementation, TensorFlow also has a relatively new component called [XLA: Accelerated Linear Algebra](https://www.tensorflow.org/performance/xla/). XLA is a compiler for linear algebra computations which can, in some circumstances, greatly increase the performance of TensorFlow. XLA is still in its alpha stages, so using it at this stage may produce inconsistent results. However, XLA provides a target for a number of optimizations, which we'll talk about in a future post.
+
 ## PySpark: The Mullet of Data Processing
 
 In keeping with TensorFlow's target usage, we elected to use Spark's Python API, [PySpark](http://spark.apache.org/docs/2.1.0/api/python/pyspark.html). Due to Python's expressive nature and [documented wide usage](https://www.tiobe.com/tiobe-index/), PySpark is a natural extension to lower the barrier of entry for data science professionals by abstracting things even further than Scala. This results in our proverbial mullet of data processing: a system which allows for users to have nothing but business up front, but a party of performance in the back.
@@ -24,7 +26,7 @@ It should be noted that PySpark may contain some inherent latency compared to Sp
 
 It's a widely held belief that abstraction must be accompanied by performance loss. However, at the core of Flare is a system aimed specifically at providing "abstraction without regret." That is, users should be given a high-level interface **without** the associated runtime penalty.
 
-To this end, we hooked the PySpark frontend into our Flare backend, replacing the original SparkSQL API. Thus, we achieve the expressiveness gains offered by PySpark, while retaining the performance gains brough by Flare (documented in our previous blog posts). As such, we get our mullet, without the regret! [Disclaimer: We do not advocate getting an actual mullet. While PyFlare may alleviate any regret using PySpark, there are some wounds that even we can't heal.]
+To this end, we hooked the PySpark frontend into our Flare backend, replacing the original SparkSQL API. Thus, we achieve the expressiveness gains offered by PySpark, while retaining the performance gains brought by Flare (documented in our previous blog posts). As such, we get our mullet, without the regret! [Disclaimer: We do not advocate getting an actual mullet. While PyFlare may alleviate any regret using PySpark, there are some wounds that even we can't heal.]
 
 ## Performance
 
@@ -86,7 +88,7 @@ For brevity, we simply show the results of running these queries with their asso
 
 ## TensorFlare
 
-When looking at how to build an optimized pipeline like TensorFlare, we discovered that TensorFlow does not have a built-in mechanism for sharing tensors across sources. As such, all data querying must be followed by an extremely expensive big data copy operation. TensorFlare, however, avoids these restrictions by sharing the same intermediate representation across sources. This yields huge performance gains, without sacrificing any expressivity.
+When looking at how to build an optimized pipeline like TensorFlare, we discovered that TensorFlow does not have a built-in mechanism for sharing tensors across sources. As such, all data querying must be followed by an extremely expensive big data copy operation. TensorFlare, however, avoids these restrictions. This yields huge performance gains, without sacrificing any expressivity.
 
 To show the benefits of having such a system, we built a small experiment utilizing TensorFlow's capabilities. We first trained a model to run on US crime statistics using the method described in [TensorFlow's MNIST tutorial](https://www.tensorflow.org/get_started/mnist/beginners). We then used this model in both PySpark and TensorFlare to see what kind of results we get. In both, we run the following query:
 
@@ -107,11 +109,11 @@ To show the benefits of having such a system, we built a small experiment utiliz
 	GROUP BY cluster
 	ORDER BY cluster
 
-The classifier method mentioned above is a UDF to Spark -- a blackbox which the optimizer is unable to reason about. In our situation, this classifier is our ML model.
+The classifier method mentioned above is a UDF to Spark -- a black box which the optimizer is unable to reason about. However, due to the compiled nature of Flare's computations, we are able to make optimizations even across UDFs! For clarity, in our situation, this classifier is the call to TensorFlow to perform the relevant ML operations..
 
-This query allows us to build an accuracy matrix, in which 100% accuracy is represented by every index in the matrix other than the diagonal running from [0, 0] to [N - 1, N - 1] is 0. In our tests, we work on a very small sample size (200 data points) simply for fast testing. As such, we are actually able to obtain 100% accuracy, though this is not expected in larger results.
+This query allows us to build an accuracy matrix, in which 100% accuracy is represented by every index in the matrix other than the diagonal running from [0, 0] to [N - 1, N - 1] is 0. In our tests, we'll work with very small datasets (2000 data points at the largest). As such, we are actually able to obtain 100% accuracy, though this is not expected in larger results.
 
-First, we'll run this in PySpark to get a baseline:
+First, we'll perform a run with only 200 data points:
 
 	>>> df = spark.sql(crimeQuery)
 	>>> time(df.show)
@@ -143,8 +145,39 @@ Running the same query in TensorFlare yields the following:
 
 	took: 1351 ms
 
-1.3 seconds, over a 3x speedup! As mentioned above, this is over a much smaller dataset than one would originally expect. Should we increase our dataset to 2000 data points, we find that PySpark takes almost a minute to run, whereas TensorFlare remains nearly constant!
+1.3 seconds, over a 3x speedup! But how does this scale? Let's bump up our data set by a factor of 10 so we're working with 2000 data points instead. First, PySpark:
+
+	>>> df = spark.sql(crimeQuery)
+	>>> time(df.show)
+	+-------+------+------+------+------+
+	|cluster|class1|class2|class3|class4|
+	+-------+------+------+------+------+
+	|      0|   524|     0|     0|     0|
+	|      1|     0|   458|     0|     0|
+	|      2|     0|     0|   495|     0|
+	|      3|     0|     0|     0|   523|
+	+-------+------+------+------+------+
+
+	took: 372601 ms
+
+Wow, 372 seconds, over 6 minutes! A linear time complexity would be unexpected due to the complex nature of the computations, but this is clearly not an optimal result. So, how does Flare compare? Let us run our query and find out:
+
+	scala> val df = flare(crimeQuery)
+	scala> time(df.show)
+	+-------+------+------+------+------+
+	|cluster|class1|class2|class3|class4|
+	+-------+------+------+------+------+
+	|      0|   524|     0|     0|     0|
+	|      1|     0|   458|     0|     0|
+	|      2|     0|     0|   495|     0|
+	|      3|     0|     0|     0|   523|
+	+-------+------+------+------+------+
+
+	took: 1565 ms
+
+
+1.5 seconds, almost the exact same as the smaller data set! We achieve this near-constant time in a number of ways, but we'll focus on what we believe to be the largest factor: All of Flare's code is compiled, including the TensorFlow operations. This is done by using tfcompile, a component introduced with XLA, to create an object file which we're able to link to our code using gcc.
 
 TensorFlare is still very much in its infancy, so these numbers will be updated as further developments are made.
 
-Interested in fast, easy machine learning at scale? Stay tuned for further posts!
+Interested in fast and easy machine learning at scale? Stay tuned for further posts!
