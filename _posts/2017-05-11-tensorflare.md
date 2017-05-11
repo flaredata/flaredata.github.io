@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "TensorFlare or: How I Learned to Stop Worrying and Love ML"
-date: 2017-05-10
+date: 2017-05-11
 ---
 
 In our [last]({% post_url 2017-04-14-parquet-on-fire %}) post, we discussed running queries in Apache Spark and Flare using the Parquet data format. In the [posts before that](https://flaredata.github.io#blog), we've looked at various speedups which Flare brings over the current iteration of Spark. In all of these posts, we've viewed Flare as a closed system, designed to operate solely as a data loading/processing tool. However, what sort of speedups could we see by chaining a system like Spark or Flare with an existing machine learning framework (in our case, TensorFlow)?
