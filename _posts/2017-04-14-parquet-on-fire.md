@@ -25,12 +25,18 @@ Now, the big question...is it fast?
 <div>
 <img width="60%" src="https://media.tenor.co/images/a8441f0f55fa49d137894f93e0371bdc/tenor.gif">
 </div>
+<div>
+<br />
+</div>
 
-
+<style type="text/css">
+    ol,li {
+        font-size: 20px;
+    }
+</style>
 
 ## Parquet Performance
 We'll consider two cases:
-
 1. Reading an entire file of data (worst-case scenario for Parquet)
 2. Reading a subset of columns
 
@@ -38,7 +44,7 @@ We'll consider two cases:
 All experiments were run on a single NUMA machine with 4 sockets, 12 Xeon E5-4657L cores per socket, and 256GB RAM per socket (1 TB total). We used Ubuntu 14.04.1 LTS, and Spark 2.0, with Scala 2.11. We will focus on the standard TPC-H benchmark, with all results in milliseconds.
 
 **Reading a File**
-It is expected that using Parquet will result in no significant gains over a traditional CSV reader. However, we find that even in this scenario, **Spark performs better when loading data from Parquet than from CSV.** We believe that this is due to effort on Apache's park to optimize Parquet reading in Spark, as well as design efforts from the Parquet team with Spark-like systems in mind.
+It is expected that using Parquet in this scenario will result in no significant gains over a traditional CSV reader. However, we find that even in this scenario, **Spark performs better when loading data from Parquet than from CSV.** We believe that this is due to effort on Apache's park to optimize Parquet reading in Spark, as well as design efforts from the Parquet team with Spark-like systems in mind.
 
 Let's look at loading every table in TPC-H on scale factor 10.
 
