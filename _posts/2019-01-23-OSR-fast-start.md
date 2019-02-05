@@ -140,7 +140,7 @@ function compile_and_run_tcc() {
   tcc -o query main.c aggregate.c -DCAN_SWITCH -lpthread -ldl
 }
 
-compile_GCC | compile_and_run_tcc
+compile_gcc | compile_and_run_tcc
 ```
 
 ## Results
