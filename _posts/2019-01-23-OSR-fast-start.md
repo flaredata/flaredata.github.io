@@ -1,12 +1,7 @@
 ---
 layout: post
 title: "On Stack Replacement: A Quick Start with Tiered Execution"
-<<<<<<< 80042628e1731262a1a66fc9f6dc482625aeee13:_posts/2019-01-14-OSR-fast-start.md
-date: 2019-01-14
-published: false
-=======
 date: 2019-01-23
->>>>>>> Update posts:_posts/2019-01-23-OSR-fast-start.md
 ---
 
 ## Motivation
