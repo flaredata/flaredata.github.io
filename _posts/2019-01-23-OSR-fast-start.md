@@ -143,7 +143,7 @@ compile_gcc | compile_and_run_tcc
 We modified Flare in order to generate code that supports OSR at the loop iteration level. Let's see how our star query is doing on different compiler configurations:
 
 On 100MB:
- <div>
+<div>
 <img src="{{ site.baseurl }}/img/tpch6-osr-sf01-blogpost.png" width="100%" />
 </div>
 
@@ -152,7 +152,7 @@ We have seen that the fastest configuration without OSR was compilation with GCC
 When the second compiler is GCC with flag -O1, we see a 20% speedup. With -O2 and -O3 the speedup is only 10%. With Clang as a second compiler, -O2 and -O3 behave similarly to the same GCC configuration, however with -O1 the code generated is actually slower, and the OSR version isn't faster that a plain GCC -O1 configuration.
 
 Let's see how it works on bigger datasets, such as 300MB, focusing on the configurations with GCC:
- <div>
+<div>
 <img src="{{ site.baseurl }}/img/tpch6-osr-sf03-blogpost.png" width="100%" />
 </div>
 
